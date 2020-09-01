@@ -11,7 +11,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(express.json()); // For parsing application/json
   app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
-
+  app.enableCors();
   app.use(logger);
   // 使用全局拦截器打印出参
   app.useGlobalInterceptors(new TransformInterceptor());

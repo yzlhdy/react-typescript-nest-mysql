@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import sequelize from '../../database/sequelize'
 import * as Sequelize from 'sequelize'
-import { User, Register } from './interface/user.interface';
+import { User } from './interface/user.interface';
 import { makeSalt, encryptPassword } from 'src/utils/cryptogram';
 
 @Injectable()
@@ -50,7 +50,7 @@ export class UserService {
      * @returns {(Promise<any | undefined>)}
      * @memberof UserService
      */
-    async register(body: Register): Promise<any | undefined> {
+    async register(body: any): Promise<any | undefined> {
         const { realName, repassword, password, accountName, mobile } = body
         if (password !== repassword) {
             return {

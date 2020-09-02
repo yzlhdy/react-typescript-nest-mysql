@@ -24,7 +24,6 @@ export class CategoryService {
             raw: true,
             logging: false
         })
-
         const countListSql = `
             SELECT
                 COUNT(*) AS total

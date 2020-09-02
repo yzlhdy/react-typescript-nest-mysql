@@ -38,8 +38,28 @@ export interface DeleteCategory {
 export const logins = (Options: LoginProps) => http.post('/user/login', Options)
 export const arcionList = (Options: ArcionData) => http.post('/commodity/list', Options)
 export const createArcion = (Options: CrateArcion) => http.post('/commodity/create', Options)
-export const productList = (Options: ProductList) => http.post('/product/list', Options)
+
 export const categoryList = (Options: ProductList) => http.post('/category/list', Options)
 export const createCategory = (Options: Create) => http.post('/category/create', Options)
 export const updateCategory = (Options: UpdateCategory) => http.post('/category/update', Options)
 export const deleteCategory = (Options: DeleteCategory) => http.post('/category/delete', Options)
+
+/**
+ * 商品列表
+ */
+
+
+export interface Products {
+  pageSize: number;
+  pageIndex: number;
+
+}
+export interface ProductsSearch {
+  pageSize: number;
+  pageIndex: number;
+  keywords: string;
+  productType: string
+}
+export const productList = (options: Products) => http.post('/product/list', options)
+export const productSearch = (options: ProductsSearch) => http.post('/product/search', options)
+

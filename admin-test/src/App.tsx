@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <ReactQueryDevtools initialIsOpen />
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
       <Router>
         <Switch>
           <Route path="/login" component={Login}></Route>

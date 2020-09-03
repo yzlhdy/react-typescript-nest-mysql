@@ -9,6 +9,7 @@ import LeftNav from '../../components/Layout/LeftNav'
 import Home from '../Home'
 import Product from '../Product'
 import Category from '../Category'
+import User from '../User'
 
 
 const { Content, Footer, Sider } = Layout;
@@ -45,6 +46,7 @@ const Admin: React.FC = () => {
                   <Route path="/home" component={Home}></Route>
                   <Route path="/product" component={Product} />
                   <Route path="/category" component={Category} />
+                  <Route path="/user" component={User} />
                 </Switch>
               </Content>
             </ContentMain>

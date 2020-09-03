@@ -9,6 +9,7 @@ export class ProductService {
     async productList(body: Product): Promise<any> {
         const { pageSize = 10, pageIndex = 1 } = body
         const currentPage = (pageIndex - 1) * pageSize > 0 ? 0 : (pageIndex - 1) * pageSize
+        console.log(currentPage, pageSize);
 
         const queryProductSql = `
             SELECT
@@ -21,7 +22,7 @@ export class ProductService {
             FROM
                 product 
             ORDER BY
-                id DESC 
+                id ASC 
             LIMIT ${currentPage},${pageSize}
         `
 

@@ -4,10 +4,11 @@ import {
   Table,
   Input,
   Button,
-  Select
+  Select,
+  message
 } from 'antd'
 import { useHistory } from 'react-router-dom'
-import { productList, Products, productSearch, ProductsSearch } from '../../api/user'
+import { productList, Products, productSearch, ProductsSearch, reqUpdateStatus } from '../../api/user'
 // import { useQuery } from 'react-query'
 import { Container } from './styles';
 import { PAGE_SIZE } from '../../utils/constant'
@@ -88,9 +89,20 @@ const ProductHome: React.FC = () => {
     </span>
   )
   const extra = (
-    <Button type="primary">添加商品</Button>
+    <Button type="primary" onClick={() => history.push('/product/addupdate',)}>添加商品</Button>
   )
+  const updateStatus = (id: number, status: number) => {
+    reqUpdateStatus({ id, status }).then(res => {
+      if (res.data.code === 200) {
+        message.success('更新成功')
+        productDataList({ pageSize: PAGE_SIZE, pageIndex: pageIndex })
 
+      } else {
+        message.error(res.data.msg)
+      }
+
+    })
+  }
   const columns = [
     {
       title: '序号',
@@ -115,29 +127,22 @@ const ProductHome: React.FC = () => {
     },
     {
       title: '状态',
-      dataIndex: 'status',
-      key: 'status',
-      render: (status: any) => {
-        let benText = "下架"
-        let text = '在售'
-        if (status === 2) {
-          benText = "上架"
-          text = "已下架"
-        }
+      render: (product: any) => {
+
         return (
           <span>
-            <Button type="ghost">{benText}</Button>
-            <div>{text}</div>
+            <Button type="primary" onClick={() => updateStatus(product.id, product.status === 1 ? 2 : 1)}>{product.status === 1 ? '下架' : '上架'}</Button>
+            <div>{product.status === 1 ? '在售' : '已下架'}</div>
           </span>
         )
       }
-
     },
     {
       title: "创建日期",
       dataIndex: 'createTime',
       key: 'createTime'
-    }, {
+    },
+    {
       title: '操作',
       width: '200px',
       render: (product: any) => {

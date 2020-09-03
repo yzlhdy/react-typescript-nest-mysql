@@ -5,7 +5,7 @@ import {
   Button
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import { Container, Detail, Images } from './styles';
 
@@ -13,18 +13,6 @@ const ProductDetail: React.FC = () => {
 
 
   const history = useHistory()
-
-
-  const location = useLocation()
-  // const { product } = location.state
-  // console.log(product.name);
-
-
-
-
-
-
-
   const title = (
     <span>
 
@@ -75,7 +63,6 @@ const ProductDetail: React.FC = () => {
             <Detail>
               <span>商品详情:</span>
               <span
-
               >猫咪</span>
             </Detail>
           </List.Item>

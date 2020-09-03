@@ -60,6 +60,12 @@ export interface ProductsSearch {
   keywords: string;
   productType: string
 }
+
+export interface ProductStatus {
+  id: number;
+  status: number
+}
 export const productList = (options: Products) => http.post('/product/list', options)
 export const productSearch = (options: ProductsSearch) => http.post('/product/search', options)
+export const reqUpdateStatus = (options: ProductStatus) => http.post('/product/status', options)
 

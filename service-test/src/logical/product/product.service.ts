@@ -106,4 +106,23 @@ export class ProductService {
             }
         }
     }
+
+    async productStatus(body: any): Promise<any | null> {
+        const { id, status } = body
+        const statusSql = `
+            UPDATE
+                product
+            SET
+                status=${status}
+            WHERE
+               id = ${id}
+        `
+        await sequelize.query(statusSql, {
+            logging: false
+        })
+        return {
+            code: 200,
+            msg: '修改成功'
+        }
+    }
 }

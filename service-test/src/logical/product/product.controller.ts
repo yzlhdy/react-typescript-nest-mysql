@@ -1,6 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { ProductDTO, SearchDTO } from './dto/product.dto'
+import { ProductDTO, SearchDTO, StatusDto } from './dto/product.dto'
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('商品管理')
@@ -15,5 +15,9 @@ export class ProductController {
     @Post('search')
     searchProduct(@Body() body: SearchDTO) {
         return this.productService.productSearch(body)
+    }
+    @Post('status')
+    productStatus(@Body() body: StatusDto) {
+        return this.productService.productStatus(body)
     }
 }

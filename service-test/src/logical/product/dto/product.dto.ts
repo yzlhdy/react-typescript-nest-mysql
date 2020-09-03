@@ -23,3 +23,13 @@ export class SearchDTO {
     @IsNotEmpty({ message: '分页数不能为空' })
     readonly pageIndex: number;
 }
+
+export class StatusDto {
+    @ApiProperty()
+    @IsNotEmpty({ message: '输入内容' })
+    readonly id: number
+    @ApiProperty()
+    @IsNotEmpty({ message: '输入内容' })
+    readonly status: number
+
+}

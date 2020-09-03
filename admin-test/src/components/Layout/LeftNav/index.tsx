@@ -16,7 +16,10 @@ const LeftNav: React.FC = () => {
   let opentKey: string = ""
 
   let location = useLocation()
-  const selectKey = location.pathname
+  let selectKey = location.pathname
+  if (selectKey.indexOf('/product') === 0) {
+    selectKey = '/product'
+  }
   const getMenuNodes1 = (menuList: any) => {
 
     return menuList.reduce((pre: any, item: any) => {
@@ -29,7 +32,7 @@ const LeftNav: React.FC = () => {
           </Menu.Item>
         )
       } else {
-        const cItem = item.children.find((cItem: any) => cItem.key === selectKey)
+        const cItem = item.children.find((cItem: any) => selectKey.indexOf(cItem.key) === 0)
         if (cItem) {
           opentKey = item.key
 

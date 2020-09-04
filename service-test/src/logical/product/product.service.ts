@@ -51,7 +51,7 @@ export class ProductService {
             code: 200,
             data: {
                 productList,
-                total: count.total
+                total: count.total,
             }
         }
     }

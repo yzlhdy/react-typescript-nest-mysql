@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, ValidationPipe, UsePipes } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductDTO, SearchDTO, StatusDto } from './dto/product.dto'
 import { ApiTags } from '@nestjs/swagger';
@@ -9,6 +9,7 @@ export class ProductController {
     constructor(private readonly productService: ProductService) { }
 
     @Post('list')
+    @UsePipes(new ValidationPipe()) // 使用管道验证
     productLists(@Body() body: ProductDTO) {
         return this.productService.productList(body)
     }
